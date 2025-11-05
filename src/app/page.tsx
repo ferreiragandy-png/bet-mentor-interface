@@ -10,6 +10,7 @@ import {
   Grass, UserX, AlertCircle, Thermometer, Wind, Sun, CloudSnow, TrendingUp,
   LogIn, UserPlus, Mail, Key, DollarSign, CreditCard, Smartphone
 } from 'lucide-react'
+import LiveBetting from '@/components/LiveBetting'
 
 // Sistema de autenticação simulado
 const AUTH_STORAGE_KEY = 'bet_mentor_user'
@@ -591,51 +592,6 @@ const useAuth = () => {
   }
 
   return { user, login, register, logout, updateUser, loading }
-}
-
-// Componente LiveBetting simplificado para evitar dependências externas
-const SimpleLiveBetting = ({ onClose }) => {
-  return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <div className="bg-black p-4 border-b border-gray-800">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-green-600 px-3 py-1 rounded-full">
-              <Activity className="w-4 h-4" />
-              <span className="text-sm font-bold">AO VIVO</span>
-            </div>
-          </div>
-          {onClose && (
-            <button
-              onClick={onClose}
-              className="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg font-medium"
-            >
-              Voltar
-            </button>
-          )}
-        </div>
-      </div>
-      
-      <div className="p-4 text-center">
-        <div className="bg-yellow-400 text-black rounded-2xl p-8 mb-6">
-          <Activity className="w-16 h-16 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold mb-2">Apostas ao Vivo</h2>
-          <p className="text-lg">Sistema em desenvolvimento</p>
-        </div>
-        
-        <p className="text-gray-400 mb-6">
-          Em breve você poderá apostar em tempo real com odds atualizadas automaticamente.
-        </p>
-        
-        <button
-          onClick={onClose}
-          className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-bold hover:bg-yellow-500 transition-all"
-        >
-          Voltar aos Jogos
-        </button>
-      </div>
-    </div>
-  )
 }
 
 export default function BetMentor() {
@@ -1457,7 +1413,7 @@ export default function BetMentor() {
       case 'support':
         return <SupportScreen />
       case 'live-betting':
-        return <SimpleLiveBetting onClose={() => setCurrentScreen('home')} />
+        return <LiveBetting onClose={() => setCurrentScreen('home')} />
       default:
         return <HomeScreen />
     }
